@@ -46,9 +46,7 @@ def slagboom_open():
     sleep(5)
     p.ChangeDutyCycle(6)
     sleep(1)
-
-
-
+    GPIO.cleanup()
 
 def main():
     lezer = NFC_lezen()
@@ -58,4 +56,6 @@ def main():
            slagboom_open()
     f.close
     
-main()
+
+while True:
+    main()
