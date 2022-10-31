@@ -48,6 +48,19 @@ def slagboom_open():
     sleep(1)
     GPIO.cleanup()
 
+def beweging():
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setwarnings(False)
+    PIR_PIN = 21
+    GPIO.setup(PIR_PIN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+    
+    if GPIO.input(PIR_PIN):
+        main()
+    else:
+        print("Geen beweging")
+    GPIO.cleanup()
+
+
 def main():
     lezer = NFC_lezen()
     f = open("key.txt","r")
@@ -55,7 +68,8 @@ def main():
         if lezer in i:
            slagboom_open()
     f.close
-    
 
 while True:
-    main()
+    beweging()
+    sleep(0.5)
+
