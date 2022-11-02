@@ -27,13 +27,14 @@ def NFC_lezen():
     reader = SimpleMFRC522()
     try:
             print("Plaats de NFC-Kaart voor de lezer")
-            id= reader.read()
-            lezer = str(id)
-            aanpassing = lezer.split(",")[0]
+            id= reader.read() #Leest de NFC kaart uit
+            lezer = str(id) #verandert de output naar een string
+            aanpassing = lezer.split(",")[0] #Stript de overbodige data
             aanpassing = aanpassing.strip("(")
     finally:
-            GPIO.cleanup()
-    return aanpassing
+            GPIO.cleanup() #sluit de GPIO pins
+    return aanpassing #Geeft resulaat terug
+
 #NFC_lezen()
 
 def slagboom_open():
