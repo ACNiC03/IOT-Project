@@ -38,16 +38,16 @@ def NFC_lezen():
 #NFC_lezen()
 
 def slagboom_open():
-    GPIO.setmode(GPIO.BCM)
-    GPIO.setwarnings(False)
-    GPIO.setup(17, GPIO.OUT)
-    p = GPIO.PWM(17, 50)
+    GPIO.setmode(GPIO.BCM) #GPIO Mode
+    GPIO.setwarnings(False) 
+    GPIO.setup(17, GPIO.OUT) #selecteerd pin 17 als een out pin
+    p = GPIO.PWM(17, 50) 
     p.start(6)
-    p.ChangeDutyCycle(11)
-    sleep(5)
-    p.ChangeDutyCycle(6)
+    p.ChangeDutyCycle(11) #zet de slagboom 90 graden omhoog
+    sleep(5) # wacht voor 5 seconden
+    p.ChangeDutyCycle(6) #Slagboom word weer naar beneden gezet
     sleep(1)
-    GPIO.cleanup()
+    GPIO.cleanup() #GPIO pin word weer opgeschoond
 
 def beweging():
     GPIO.setmode(GPIO.BCM)
