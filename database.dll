@@ -1,0 +1,25 @@
+CREATE TABLE RFID (
+  RFIDid SERIAL NOT NULL,
+  PRIMARY KEY (RFIDid));
+CREATE TABLE Employee (
+  EmployeeID                 SERIAL NOT NULL,
+  "First Name"               text NOT NULL,
+  "Last Name"                text NOT NULL,
+  Department                 text,
+  Email                      text NOT NULL,
+  "Phone Number"             int4,
+  "Registered Licence Plate" text,
+  Handicap                   bool NOT NULL,
+  RFIDid                     int4 NOT NULL,
+  PRIMARY KEY (EmployeeID));
+CREATE TABLE Parking (
+  DriveIN    timestamp,
+  DriveOUT   timestamp,
+  Inside     bool NOT NULL,
+  EmployeeID int4 NOT NULL,
+  RFIDid     int4 NOT NULL,
+  PRIMARY KEY (EmployeeID,
+  RFIDid));
+ALTER TABLE Parking ADD CONSTRAINT FKParking375009 FOREIGN KEY (EmployeeID) REFERENCES Employee (EmployeeID);
+ALTER TABLE Employee ADD CONSTRAINT FKEmployee621299 FOREIGN KEY (RFIDid) REFERENCES RFID (RFIDid);
+ALTER TABLE Parking ADD CONSTRAINT FKParking958714 FOREIGN KEY (RFIDid) REFERENCES RFID (RFIDid);
