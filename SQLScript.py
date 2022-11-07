@@ -1,10 +1,20 @@
+
+
+"""
+Credentials voor iot DB
+voorbeeld:
+iotDB = Database(ahmetnicanci.ddns.net, iot, admin, Studentje1)
+"""
+
+import psycopg2
+
 class Database:
-    def __init__(self, host, database, user):
+    def __init__(self, host, database, user, password):
         self.con = psycopg2.connect(
             host=host,
             database=database,
             user=user,
-            password=getpass.getpass(prompt="ENTER DB PASSWORD: \n")
+            password=password)
         )
 
     def select(self, attribute, table, additionalData=None):
