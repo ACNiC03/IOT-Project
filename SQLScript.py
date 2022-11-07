@@ -14,7 +14,7 @@ class Database:
             host=host,
             database=database,
             user=user,
-            password=password)
+            password=password
         )
 
     def select(self, attribute, table, additionalData=None):
