@@ -53,7 +53,7 @@ def slagboom_open():
 def beweging():
     GPIO.setmode(GPIO.BCM)
     GPIO.setwarnings(False)
-    PIR_PIN = 21
+    PIR_PIN = 16
     GPIO.setup(PIR_PIN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
     
     if GPIO.input(PIR_PIN):
