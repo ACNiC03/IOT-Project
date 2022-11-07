@@ -2,9 +2,9 @@ from wsgiref.util import request_uri
 import RPi.GPIO as GPIO
 from mfrc522 import SimpleMFRC522
 from time import sleep
+import SQLScript as SQL
 
-
-
+db = SQL.Database("ahmetnicanci.ddns.net", "iot", "admin", "Studentje1")
 
 def NFC_aanmaken():
     reader = SimpleMFRC522()
@@ -31,6 +31,7 @@ def NFC_lezen():
             lezer = str(id) #verandert de output naar een string
             aanpassing = lezer.split(",")[0] #Stript de overbodige data
             aanpassing = aanpassing.strip("(")
+            aanpassing = int(aanpassing)
     finally:
             GPIO.cleanup() #sluit de GPIO pins
     return aanpassing #Geeft resulaat terug
@@ -65,9 +66,15 @@ def beweging():
 def main():
     lezer = NFC_lezen()
     f = open("key.txt","r")
-    for i in f:
-        if lezer in i:
+    ids = db.select("rfid.rfidid", "RFID")
+    lijst1=[]
+    for l1 in ids:
+        lijst1.append(l1[0])
+
+    for i in lijst1:
+        if lezer == i:
            slagboom_open()
+           print("open")
     f.close
 
 while True:
