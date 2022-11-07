@@ -1,9 +1,16 @@
 
 
 """
+
+Voer commandos uit op Raspberry pi om psycopg2 werkend te krijgen:
+
+sudo pip3 install --upgrade pip
+sudo pip3 install psycopg2
+
 Credentials voor iot DB
 voorbeeld:
 iotDB = Database(ahmetnicanci.ddns.net, iot, admin, Studentje1)
+
 """
 
 import psycopg2
